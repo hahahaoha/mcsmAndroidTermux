@@ -2,7 +2,6 @@
 # Termux MCSManager 安装脚本
 set -e
 
-# 颜色定义
 C_RESET='\e[0m'
 C_BOLD='\e[1m'
 C_CYAN='\e[36m'
@@ -35,10 +34,24 @@ step "2/8 安装 Node.js..."
 pkg install -y nodejs
 success "Node.js 安装完成。"
 
-# 3. 安装 Java 21
-step "3/8 安装 Java 21 (openjdk-21)..."
-pkg install -y openjdk-21
-success "Java 21 安装完成。"
+# 3. 安装 Java
+step "3/8 安装 Java..."
+echo -e "请选择 Java 版本:"
+echo -e "  ${C_YELLOW}1)${C_RESET} Java 25"
+echo -e "  ${C_YELLOW}2)${C_RESET} Java 21"
+echo -e "  ${C_YELLOW}3)${C_RESET} Java 17"
+read -p "$(echo -e ${C_CYAN}请输入选项 1/2/3: ${C_RESET})" java_choice
+
+case $java_choice in
+    1) JAVA_VER="25";;
+    2) JAVA_VER="21";;
+    3) JAVA_VER="17";;
+    *) error "无效选项，安装终止。"; exit 1;;
+esac
+
+info "正在安装 openjdk-${JAVA_VER} ..."
+pkg install -y openjdk-${JAVA_VER}
+success "Java ${JAVA_VER} 安装完成。"
 
 # 4. 检查安装
 step "4/8 验证关键组件..."
@@ -61,19 +74,19 @@ success "目录已创建: $MCMS_DIR"
 # 7. 下载 MCSManager
 step "7/8 获取 MCSManager 发行包..."
 echo -e "请选择下载方式:"
-echo -e "  ${C_YELLOW}1)${C_RESET} 官方源 (GitHub)"
-echo -e "  ${C_YELLOW}2)${C_RESET} 加速代理 (proxy.gitwarp.top)"
+echo -e "  ${C_YELLOW}1)${C_RESET} github加速 (proxy.gitwarp.top)"
+echo -e "  ${C_YELLOW}2)${C_RESET} 官方源 (gitHub)"
 echo -e "  ${C_YELLOW}3)${C_RESET} 手动导入 (需提前放置文件)"
 read -p "$(echo -e ${C_CYAN}请输入选项 1/2/3: ${C_RESET})" choice
 
 case $choice in
     1)
-        info "使用官方源下载..."
-        wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz
-        ;;
-    2)
         info "使用加速代理下载..."
         wget https://proxy.gitwarp.top/https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz
+        ;;
+    2)
+        info "使用官方源下载..."
+        wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz
         ;;
     3)
         info "请将 mcsmanager_linux_release.tar.gz 放入 ~/mcsm/ 后按回车..."
@@ -134,7 +147,7 @@ echo -e "  1. 在 Termux 中执行: ${C_BOLD}cd mcsm && ./start-daemon.sh${C_RES
 echo -e "  2. ${C_BOLD}新建会话${C_RESET}，执行: ${C_BOLD}cd mcsm && ./start-web.sh${C_RESET}"
 echo -e "${C_YELLOW}==============================${C_RESET}"
 
-# 等待 10 秒后启动守护进程（此步骤会占用当前终端）
+# 等待 10 秒后启动守护进程
 echo -e "\n${C_CYAN}当前会话将在 10 秒后自动启动守护进程...${C_RESET}"
 sleep 10
 ./start-daemon.sh
