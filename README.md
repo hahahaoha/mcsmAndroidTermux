@@ -7,7 +7,7 @@
 1.拉取脚本运行
 
 ```shell
-bash <(curl -sSL https://github.com/hahahaoha/mcsmAndroidTermux/blob/d9359fe5daace5ad5d6a2bbacd3763ab3b0fd731/main.sh)
+待定
 ```
 
 2.创建新会话运行
