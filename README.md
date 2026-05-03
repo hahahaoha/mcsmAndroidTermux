@@ -8,6 +8,12 @@
 bash <(curl -sSL https://raw.githubusercontent.com/hahahaoha/mcsmAndroidTermux/refs/heads/main/main.sh)
 ```
 
+或者用github加速链接
+
+```shell
+bash <(curl -sSL https://proxy.gitwarp.top/https://raw.githubusercontent.com/hahahaoha/mcsmAndroidTermux/refs/heads/main/main.sh)
+```
+
 2.创建新会话运行
 
 ```shell
