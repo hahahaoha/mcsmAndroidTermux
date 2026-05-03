@@ -1,4 +1,4 @@
-# 使用脚本快速在Termux上部署MCSManager
+## 使用脚本快速在Termux上部署MCSManager
 
 ## 使用方法：
 
