@@ -1,5 +1,3 @@
-目前还在修改请勿使用!
-
 使用脚本快速在Termux上部署MCSManager
 
 使用方法：
@@ -7,7 +5,7 @@
 1.拉取脚本运行
 
 ```shell
-待定
+bash <(curl -sSL https://raw.githubusercontent.com/hahahaoha/mcsmAndroidTermux/refs/heads/main/main.sh)
 ```
 
 2.创建新会话运行
