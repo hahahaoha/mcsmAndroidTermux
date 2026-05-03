@@ -5,7 +5,7 @@
 1.拉取脚本运行
 
 ```shell
-bash <(curl -sSL https://github.com/hahahaoha/mcsmAndroidTermux/blob/main/main.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/zhuyejun520/Android-for-MCSManager/main/mian.sh))
 ```
 
 2.创建新会话运行
