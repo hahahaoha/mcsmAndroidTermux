@@ -5,7 +5,7 @@
 ### 1.拉取脚本运行
 
 ```shell
-bash <(curl -sSL https://raw.githubusercontent.com/hahahaoha/mcsmAndroidTermux/refs/heads/main/main.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/hahahaoha/TermuxMCSManager/refs/heads/main/main.sh)
 ```
 
 或者用github加速链接
