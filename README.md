@@ -17,7 +17,7 @@ bash <(curl -sSL https://proxy.gitwarp.top/https://raw.githubusercontent.com/hah
 ### 2.创建新会话运行
 
 ```shell
-cd mcsm && ./start-web.sh
+web
 ```
 
 ### 3.用浏览器打开http://localhost:23333
