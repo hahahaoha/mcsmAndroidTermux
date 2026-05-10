@@ -131,20 +131,35 @@ fi
 cd "$MCMS_DIR"
 chmod 777 start-web.sh
 
+# 添加快捷命令
+BASHRC="$HOME/.bashrc"
+if ! grep -q "function webs()" "$BASHRC" 2>/dev/null; then
+    cat >> "$BASHRC" << 'EOF'
+
+# MCSManager 快捷命令
+function webs() {
+    cd ~/mcsm && ./start-daemon.sh
+}
+function web() {
+    cd ~/mcsm && ./start-web.sh
+}
+EOF
+fi
+
 # ---------- 重要提示 ----------
 echo -e "\n${C_GREEN}${SEP}${C_RESET}"
 echo -e "${C_GREEN}  环境安装完成！ʢ˶ᵒ ᵕ ˂˶ʡᶻ  ${C_RESET}"
 echo -e "${C_GREEN}${SEP}${C_RESET}"
 
 echo -e "接下来请 ${C_BOLD}新开一个 Termux 会话${C_RESET}，执行:"
-echo -e "  ${C_YELLOW}cd mcsm && ./start-web.sh${C_RESET}"
+echo -e "  ${C_YELLOW}web${C_RESET}"
 echo -e ""
 echo -e "${C_GREEN}面板地址: ${C_BOLD}http://localhost:23333${C_RESET}"
 
 echo -e "\n${C_YELLOW}*** 重新开启面板指引 ***${C_RESET}"
 echo -e "若面板关闭后需要重新启动，请按顺序操作:"
-echo -e "  1. 在 Termux 中执行: ${C_BOLD}cd mcsm && ./start-daemon.sh${C_RESET}"
-echo -e "  2. ${C_BOLD}新建会话${C_RESET}，执行: ${C_BOLD}cd mcsm && ./start-web.sh${C_RESET}"
+echo -e "  1. 在当前会话执行: ${C_BOLD}webs${C_RESET}"
+echo -e "  2. ${C_BOLD}新建会话${C_RESET}，执行: ${C_BOLD}web${C_RESET}"
 echo -e "${C_YELLOW}==============================${C_RESET}"
 
 # 等待 10 秒后启动守护进程
